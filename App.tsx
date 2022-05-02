@@ -1,17 +1,21 @@
 import { StyleSheet, Text, View } from "react-native";
-import { PrimaryButton } from "./components/PrimaryButton";
 import { StartGameScreen } from "./screens/StartGameScreen";
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Hello React Native TypeScript World!</Text>
-      <PrimaryButton color="red">Hello</PrimaryButton>
+    <View style={styles.inputContainer}>
       <StartGameScreen />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {},
+  inputContainer: {
+    backgroundColor: "#72063c",
+    padding: 16,
+    marginHorizontal: 24,
+    marginTop: 100,
+    borderRadius: 8,
+    elevation: 4,
+  },
 });
