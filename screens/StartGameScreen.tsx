@@ -1,7 +1,7 @@
 import { TextInput, View, StyleSheet } from "react-native";
 import { PrimaryButton } from "../components/PrimaryButton";
 
-export const StartGameScreen = () => {
+export const StartGameScreen: React.FC = () => {
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -19,10 +19,10 @@ export const StartGameScreen = () => {
 
 const styles = StyleSheet.create({
   inputContainer: {
-    backgroundColor: "#72063c",
-    padding: 16,
-    marginHorizontal: 24,
     marginTop: 100,
+    marginHorizontal: 24,
+    padding: 16,
+    backgroundColor: "#4e0329",
     borderRadius: 8,
     elevation: 4,
     shadowColor: "black",
