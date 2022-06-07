@@ -5,20 +5,28 @@ export const StartGameScreen: React.FC = () => {
   return (
     <View style={styles.inputContainer}>
       <TextInput
-        style={styles.textInput}
+        style={styles.numberInput}
         maxLength={2}
         keyboardType="number-pad"
         autoCapitalize="none"
         autoCorrect={false}
       />
-      <PrimaryButton>Reset</PrimaryButton>
-      <PrimaryButton>Confirm</PrimaryButton>
+      <View style={styles.buttonsContainers}>
+        <View style={styles.buttonsContainer}>
+          <PrimaryButton>Reset</PrimaryButton>
+        </View>
+        <View style={styles.buttonsContainer}>
+          <PrimaryButton>Confirm</PrimaryButton>
+        </View>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   inputContainer: {
+    justifyContent: "center",
+    alignItems: "center",
     marginTop: 100,
     marginHorizontal: 24,
     padding: 16,
@@ -33,7 +41,7 @@ const styles = StyleSheet.create({
     shadowRadius: 6,
     shadowOpacity: 0.25,
   },
-  textInput: {
+  numberInput: {
     height: 50,
     width: 50,
     fontSize: 32,
@@ -43,5 +51,11 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  buttonsContainers: {
+    flexDirection: "row",
+  },
+  buttonsContainer: {
+    flex: 1,
   },
 });
