@@ -2,7 +2,11 @@ import { useState } from "react";
 import { TextInput, View, StyleSheet, Alert } from "react-native";
 import { PrimaryButton } from "../components/PrimaryButton";
 
-export const StartGameScreen: React.FC = () => {
+interface childProps {
+  children?: React.ReactNode;
+  onPickNumber: (arg0: number) => void
+}
+export const StartGameScreen: React.FC<childProps> = ({onPickNumber}) => {
   const [enteredNumber, setEnteredNumber] = useState("");
 
   const numberInoutHandler = (enteredText: string) => {
@@ -14,7 +18,7 @@ export const StartGameScreen: React.FC = () => {
   };
 
   const confirmInputHandler = () => {
-    const chosenNmber = parseInt(enteredNumber);
+    const chosenNmber:number = parseInt(enteredNumber);
     if (isNaN(chosenNmber) || chosenNmber <= 0 || chosenNmber > 99) {
       // show alert
       Alert.alert(
@@ -31,6 +35,7 @@ export const StartGameScreen: React.FC = () => {
       return;
     }
     console.log("Valid Number");
+    onPickNumber(chosenNmber)
   };
 
   return (
