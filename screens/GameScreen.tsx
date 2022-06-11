@@ -1,4 +1,4 @@
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
 interface ChildProps {
   children?: React.ReactNode;
@@ -6,8 +6,26 @@ interface ChildProps {
 
 export const GameScreen: React.FC<ChildProps> = () => {
   return (
-    <View>
-      <Text>Game Screen</Text>
+    <View style={styles.screen}>
+      <Text>Opponent's Guess</Text>
+      <Text>Guess</Text>
+
+      <View>
+        <Text>Higher or lower</Text>
+        <Text>+ button</Text>
+        <Text>- button</Text>
+      </View>
+
+      <View>
+        <Text>Log Rounds</Text>
+      </View>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+    padding: 12,
+  },
+});
