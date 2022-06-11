@@ -26,6 +26,6 @@ export const GameScreen: React.FC<ChildProps> = () => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    padding: 12,
+    padding: 32,
   },
 });
