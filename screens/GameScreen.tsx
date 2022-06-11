@@ -1,4 +1,5 @@
 import { Text, View, StyleSheet } from "react-native";
+import { Title } from "../components/Title";
 
 interface ChildProps {
   children?: React.ReactNode;
@@ -7,7 +8,7 @@ interface ChildProps {
 export const GameScreen: React.FC<ChildProps> = () => {
   return (
     <View style={styles.screen}>
-      <Text>Opponent's Guess</Text>
+      <Title title="Opponent's Guess" />
       <Text>Guess</Text>
 
       <View>
