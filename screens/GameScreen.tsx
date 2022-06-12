@@ -1,15 +1,31 @@
+import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
-import { Title } from "../components/Title";
+import { NumberContainer } from "../components/game/NumberContainer";
+import { Title } from "../components/ui/Title";
 
 interface ChildProps {
   children?: React.ReactNode;
+  userNumber: number;
 }
 
-export const GameScreen: React.FC<ChildProps> = () => {
+function generateRandomBetween(
+  min: number,
+  max: number,
+  exclude?: number
+): number {
+  const rndNum = Math.floor(Math.random() * (max - min)) + min;
+
+  return rndNum === exclude ? generateRandomBetween(min, max, exclude) : rndNum;
+}
+
+export const GameScreen: React.FC<ChildProps> = ({ userNumber }) => {
+  const initialGuess = generateRandomBetween(1, 100, userNumber);
+  const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
   return (
     <View style={styles.screen}>
       <Title title="Opponent's Guess" />
-      <Text>Guess</Text>
+      {/* <Text>Guess</Text> */}
+      <NumberContainer>{currentGuess}</NumberContainer>
 
       <View>
         <Text>Higher or lower</Text>
