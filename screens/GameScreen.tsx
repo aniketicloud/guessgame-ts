@@ -43,6 +43,8 @@ export const GameScreen: React.FC<ChildProps> = ({ userNumber }) => {
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    // TODO: adjust/remove padding
+    // !!!!!!!
     padding: 32,
   },
 });
