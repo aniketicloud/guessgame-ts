@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Text, View, StyleSheet } from "react-native";
 import { NumberContainer } from "../components/game/NumberContainer";
+import { PrimaryButton } from "../components/ui/PrimaryButton";
 import { Title } from "../components/ui/Title";
 
 interface ChildProps {
@@ -18,9 +19,35 @@ function generateRandomBetween(
   return rndNum === exclude ? generateRandomBetween(min, max, exclude) : rndNum;
 }
 
+let minBoundary: number = 1;
+let maxBoundary: number = 100;
+
 export const GameScreen: React.FC<ChildProps> = ({ userNumber }) => {
-  const initialGuess = generateRandomBetween(1, 100, userNumber);
+  const initialGuess = generateRandomBetween(
+    minBoundary,
+    maxBoundary,
+    userNumber
+  );
   const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
+
+  enum directionEnum {
+    HIGHER = "HIGHER",
+    LOWER = "LOWER",
+  }
+  const nextGuessHandler = (direction: directionEnum) => {
+    // TODO: Bread out of infinite loop for incorrect user input
+    if (direction === directionEnum.LOWER) {
+      maxBoundary = currentGuess - 1;
+    } else {
+      minBoundary = currentGuess + 1;
+    }
+    const newRndNumber = generateRandomBetween(
+      minBoundary,
+      maxBoundary,
+      currentGuess
+    );
+    setCurrentGuess(newRndNumber);
+  };
   return (
     <View style={styles.screen}>
       <Title title="Opponent's Guess" />
@@ -29,6 +56,18 @@ export const GameScreen: React.FC<ChildProps> = ({ userNumber }) => {
 
       <View>
         <Text>Higher or lower</Text>
+        <View>
+          <PrimaryButton
+            onPress={nextGuessHandler.bind(this, directionEnum.LOWER)}
+          >
+            -
+          </PrimaryButton>
+          <PrimaryButton
+            onPress={nextGuessHandler.bind(this, directionEnum.HIGHER)}
+          >
+            +
+          </PrimaryButton>
+        </View>
         <Text>+ button</Text>
         <Text>- button</Text>
       </View>
