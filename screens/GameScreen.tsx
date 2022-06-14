@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Alert } from "react-native";
 import { NumberContainer } from "../components/game/NumberContainer";
 import { PrimaryButton } from "../components/ui/PrimaryButton";
 import { Title } from "../components/ui/Title";
@@ -34,8 +34,17 @@ export const GameScreen: React.FC<ChildProps> = ({ userNumber }) => {
     HIGHER = "HIGHER",
     LOWER = "LOWER",
   }
-  const nextGuessHandler = (direction: directionEnum) => {
+  const nextGuessHandler = (direction: directionEnum): void => {
     // TODO: Bread out of infinite loop for incorrect user input
+    if (
+      (direction === directionEnum.LOWER && currentGuess < userNumber) ||
+      (direction === directionEnum.HIGHER && currentGuess > userNumber)
+    ) {
+      Alert.alert("Don't Lie", "You know that this is wrong . . . !", [
+        { text: "Sorry!", style: "cancel" },
+      ]);
+      return;
+    }
     if (direction === directionEnum.LOWER) {
       maxBoundary = currentGuess - 1;
     } else {
