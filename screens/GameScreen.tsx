@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Alert } from "react-native";
 import { NumberContainer } from "../components/game/NumberContainer";
 import { PrimaryButton } from "../components/ui/PrimaryButton";
@@ -7,6 +7,7 @@ import { Title } from "../components/ui/Title";
 interface ChildProps {
   children?: React.ReactNode;
   userNumber: number;
+  onGameOver: any;
 }
 
 function generateRandomBetween(
@@ -22,10 +23,13 @@ function generateRandomBetween(
 let minBoundary: number = 1;
 let maxBoundary: number = 100;
 
-export const GameScreen: React.FC<ChildProps> = ({ userNumber }) => {
+export const GameScreen: React.FC<ChildProps> = ({
+  userNumber,
+  onGameOver,
+}) => {
   const initialGuess = generateRandomBetween(
-    minBoundary,
-    maxBoundary,
+    1,
+    100,
     userNumber
   );
   const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
@@ -35,7 +39,6 @@ export const GameScreen: React.FC<ChildProps> = ({ userNumber }) => {
     LOWER = "LOWER",
   }
   const nextGuessHandler = (direction: directionEnum): void => {
-    // TODO: Bread out of infinite loop for incorrect user input
     if (
       (direction === directionEnum.LOWER && currentGuess < userNumber) ||
       (direction === directionEnum.HIGHER && currentGuess > userNumber)
@@ -57,6 +60,13 @@ export const GameScreen: React.FC<ChildProps> = ({ userNumber }) => {
     );
     setCurrentGuess(newRndNumber);
   };
+
+  useEffect(() => {
+    if (currentGuess === userNumber) {
+      onGameOver(true);
+    }
+  }, [currentGuess, userNumber, onGameOver]);
+
   return (
     <View style={styles.screen}>
       <Title title="Opponent's Guess" />
@@ -77,8 +87,6 @@ export const GameScreen: React.FC<ChildProps> = ({ userNumber }) => {
             +
           </PrimaryButton>
         </View>
-        <Text>+ button</Text>
-        <Text>- button</Text>
       </View>
 
       <View>
