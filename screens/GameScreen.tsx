@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Text, View, StyleSheet, Alert } from "react-native";
 import { NumberContainer } from "../components/game/NumberContainer";
+import { Card } from "../components/ui/Card";
+import { InstructionText } from "../components/ui/InstructionText";
 import { PrimaryButton } from "../components/ui/PrimaryButton";
 import { Title } from "../components/ui/Title";
 
@@ -27,11 +29,7 @@ export const GameScreen: React.FC<ChildProps> = ({
   userNumber,
   onGameOver,
 }) => {
-  const initialGuess = generateRandomBetween(
-    1,
-    100,
-    userNumber
-  );
+  const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
 
   enum directionEnum {
@@ -73,21 +71,25 @@ export const GameScreen: React.FC<ChildProps> = ({
       {/* <Text>Guess</Text> */}
       <NumberContainer>{currentGuess}</NumberContainer>
 
-      <View>
-        <Text>Higher or lower</Text>
-        <View>
-          <PrimaryButton
-            onPress={nextGuessHandler.bind(this, directionEnum.LOWER)}
-          >
-            -
-          </PrimaryButton>
-          <PrimaryButton
-            onPress={nextGuessHandler.bind(this, directionEnum.HIGHER)}
-          >
-            +
-          </PrimaryButton>
+      <Card>
+        <InstructionText>Higher or lower</InstructionText>
+        <View style={styles.buttonContainers}>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton
+              onPress={nextGuessHandler.bind(this, directionEnum.LOWER)}
+            >
+              -
+            </PrimaryButton>
+          </View>
+          <View style={styles.buttonContainer}>
+            <PrimaryButton
+              onPress={nextGuessHandler.bind(this, directionEnum.HIGHER)}
+            >
+              +
+            </PrimaryButton>
+          </View>
         </View>
-      </View>
+      </Card>
 
       <View>
         <Text>Log Rounds</Text>
@@ -102,5 +104,11 @@ const styles = StyleSheet.create({
     // TODO: adjust/remove padding
     // !!!!!!!
     padding: 32,
+  },
+  buttonContainers: {
+    flexDirection: "row",
+  },
+  buttonContainer: {
+    flex: 1,
   },
 });
