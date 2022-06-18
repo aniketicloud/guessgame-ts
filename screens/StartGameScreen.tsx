@@ -56,11 +56,11 @@ export const StartGameScreen: React.FC<childProps> = ({ onPickNumber }) => {
           onChangeText={numberInputHandler}
           value={enteredNumber}
         />
-        <View style={styles.buttonsContainers}>
-          <View style={styles.buttonsContainer}>
+        <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
             <PrimaryButton onPress={resetInputHandler}>Reset</PrimaryButton>
           </View>
-          <View style={styles.buttonsContainer}>
+          <View style={styles.buttonContainer}>
             <PrimaryButton onPress={confirmInputHandler}>Confirm</PrimaryButton>
           </View>
         </View>
@@ -86,10 +86,10 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
   },
-  buttonsContainers: {
+  buttonsContainer: {
     flexDirection: "row",
   },
-  buttonsContainer: {
+  buttonContainer: {
     flex: 1,
   },
 });

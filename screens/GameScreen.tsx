@@ -73,7 +73,7 @@ export const GameScreen: React.FC<ChildProps> = ({
 
       <Card>
         <InstructionText>Higher or lower</InstructionText>
-        <View style={styles.buttonContainers}>
+        <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton
               onPress={nextGuessHandler.bind(this, directionEnum.LOWER)}
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     // !!!!!!!
     padding: 32,
   },
-  buttonContainers: {
+  buttonsContainer: {
     flexDirection: "row",
   },
   buttonContainer: {
