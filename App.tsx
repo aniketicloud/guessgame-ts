@@ -9,18 +9,13 @@ import { Colors } from "./constants/colors";
 import { GameScreen } from "./screens/GameScreen";
 import { GameOverScreen } from "./screens/GameOverScreen";
 
-export enum ProjectFonts {
-  OpenSans = "open-sans",
-  OpenSansBold = "open-sans-bold",
-}
-
 export default function App() {
   const [userNumber, setUserNumber] = useState<number>();
   const [isGameOver, setIsGameOver] = useState<boolean>(true);
 
   const [fontsLoaded] = useFonts({
-    [ProjectFonts.OpenSans]: require("./assets/fonts/OpenSans-Regular.ttf"),
-    [ProjectFonts.OpenSansBold]: require("./assets/fonts/OpenSans-Bold.ttf"),
+    "open-sans": require("./assets/fonts/OpenSans-Regular.ttf"),
+    "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 
   if (!fontsLoaded) {

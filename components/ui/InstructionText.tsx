@@ -1,5 +1,4 @@
 import { StyleSheet, Text } from "react-native";
-import { ProjectFonts } from "../../App";
 import { Colors } from "../../constants/colors";
 
 interface childProps {
@@ -14,7 +13,7 @@ export const InstructionText: React.FC<childProps> = ({ text, style }) => {
 
 const styles = StyleSheet.create({
   instructionText: {
-    fontFamily: ProjectFonts.OpenSans,
+    fontFamily: "open-sans",
     color: Colors.accent500,
     fontSize: 24,
   },

@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View } from "react-native";
-import { ProjectFonts } from "../../App";
 import { Colors } from "../../constants/colors";
 
 interface childProps {
@@ -28,6 +27,6 @@ const styles = StyleSheet.create({
   numberText: {
     color: Colors.accent500,
     fontSize: 16,
-    fontFamily: ProjectFonts.OpenSansBold,
+    fontFamily: "open-sans-bold",
   },
 });
