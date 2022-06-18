@@ -3,10 +3,11 @@ import { Colors } from "../../constants/colors";
 
 interface childProps {
   children: React.ReactNode;
+  style?: {};
 }
 
-export const InstructionText: React.FC<childProps> = ({ children }) => {
-  return <Text style={styles.instructionText}>{children}</Text>;
+export const InstructionText: React.FC<childProps> = ({ children, style }) => {
+  return <Text style={[styles.instructionText, style]}>{children}</Text>;
 };
 
 const styles = StyleSheet.create({

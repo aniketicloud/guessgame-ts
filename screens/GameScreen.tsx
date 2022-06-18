@@ -68,11 +68,12 @@ export const GameScreen: React.FC<ChildProps> = ({
   return (
     <View style={styles.screen}>
       <Title title="Opponent's Guess" />
-      {/* <Text>Guess</Text> */}
       <NumberContainer>{currentGuess}</NumberContainer>
 
       <Card>
-        <InstructionText>Higher or lower</InstructionText>
+        <InstructionText style={styles.instructionText}>
+          Higher or lower
+        </InstructionText>
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton
@@ -104,6 +105,9 @@ const styles = StyleSheet.create({
     // TODO: adjust/remove padding
     // !!!!!!!
     padding: 32,
+  },
+  instructionText: {
+    marginBottom: 12,
   },
   buttonsContainer: {
     flexDirection: "row",
