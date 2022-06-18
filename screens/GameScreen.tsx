@@ -70,12 +70,13 @@ export const GameScreen: React.FC<ChildProps> = ({
   return (
     <View style={styles.screen}>
       <Title title="Opponent's Guess" />
-      <NumberContainer>{currentGuess}</NumberContainer>
+      <NumberContainer number={currentGuess} />
 
       <Card>
-        <InstructionText style={styles.instructionText}>
-          Higher or lower
-        </InstructionText>
+        <InstructionText
+          text="Higher or lower"
+          style={styles.instructionText}
+        />
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
             <PrimaryButton

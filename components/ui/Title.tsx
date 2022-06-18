@@ -1,5 +1,5 @@
 import { StyleSheet, Text } from "react-native";
-import { Colors } from "../../constants/colors";
+import { ProjectFonts } from "../../App";
 
 interface childProps {
   children?: React.ReactNode;
@@ -7,13 +7,14 @@ interface childProps {
 }
 
 export const Title: React.FC<childProps> = ({ title }) => {
+
   return <Text style={styles.title}>{title}</Text>;
 };
 
 const styles = StyleSheet.create({
   title: {
+    fontFamily: ProjectFonts.OpenSansBold,
     fontSize: 24,
-    fontWeight: "bold",
     color: "white",
     textAlign: "center",
     borderWidth: 2,

@@ -1,14 +1,16 @@
 import { StyleSheet, Text, View } from "react-native";
+import { ProjectFonts } from "../../App";
 import { Colors } from "../../constants/colors";
 
 interface childProps {
   children?: React.ReactNode;
+  number: number;
 }
 
-export const NumberContainer: React.FC<childProps> = ({ children }) => {
+export const NumberContainer: React.FC<childProps> = ({ number }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.numberText}>{children}</Text>
+      <Text style={styles.numberText}>{number}</Text>
     </View>
   );
 };
@@ -26,6 +28,6 @@ const styles = StyleSheet.create({
   numberText: {
     color: Colors.accent500,
     fontSize: 16,
-    fontWeight: "bold",
+    fontFamily: ProjectFonts.OpenSansBold,
   },
 });
