@@ -80,10 +80,6 @@ export const GameScreen: React.FC<ChildProps> = ({
     }
   }, [currentGuess, userNumber, onGameOver]);
 
-  const renderItem = (item) => {
-    <Text>{item}</Text>;
-  };
-
   return (
     <View style={styles.screen}>
       <Title title="Opponent's Guess" />
@@ -113,10 +109,14 @@ export const GameScreen: React.FC<ChildProps> = ({
       </Card>
 
       <View>
-        {guessRounds.map((guessRound) => (
+        {/* {guessRounds.map((guessRound) => (
           <Text key={guessRound}>{guessRound}</Text>
-        ))}
-        {/* <FlatList data={guessRounds} renderItem={renderItem} /> */}
+        ))} */}
+        <FlatList
+          data={guessRounds}
+          renderItem={(itemData) => <Text>{itemData.item}</Text>}
+          keyExtractor={(item) => item.toString()}
+        />
       </View>
     </View>
   );
