@@ -5,9 +5,16 @@ import { Colors } from "../constants/colors";
 
 interface ChildProps {
   children?: React.ReactNode;
+  roundNumber: number;
+  userNumber: number;
+  onStartnewGame: () => void;
 }
 
-export const GameOverScreen: React.FC<ChildProps> = () => {
+export const GameOverScreen: React.FC<ChildProps> = ({
+  roundNumber,
+  userNumber,
+  onStartnewGame,
+}) => {
   return (
     <View style={styles.rootContainer}>
       <Title title="GAME OVER !" />
@@ -18,10 +25,11 @@ export const GameOverScreen: React.FC<ChildProps> = () => {
         />
       </View>
       <Text style={styles.summaryText}>
-        Your phone needed <Text style={styles.highlight}>X</Text> rounds to
-        guess the number <Text style={styles.highlight}>Y</Text>.
+        Your phone needed <Text style={styles.highlight}>{roundNumber}</Text>{" "}
+        rounds to guess the number{" "}
+        <Text style={styles.highlight}>{userNumber}</Text>.
       </Text>
-      <PrimaryButton>Start New Game</PrimaryButton>
+      <PrimaryButton onPress={onStartnewGame}>Start New Game</PrimaryButton>
     </View>
   );
 };

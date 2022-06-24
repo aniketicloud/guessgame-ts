@@ -34,6 +34,14 @@ export const GameScreen: React.FC<ChildProps> = ({
   const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
 
+  // using useeffect to set minBoundary & maxBoundary to original value
+  // when new game will run in case there was previous game run
+  // we can also set the numbers in *onGameOver*
+  useEffect(() => {
+    minBoundary = 1;
+    maxBoundary = 100;
+  }, []);
+
   enum directionEnum {
     HIGHER = "HIGHER",
     LOWER = "LOWER",
