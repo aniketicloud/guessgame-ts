@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Text, View, StyleSheet, Alert } from "react-native";
+import { Text, FlatList, View, StyleSheet, Alert } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { NumberContainer } from "../components/game/NumberContainer";
@@ -33,6 +33,7 @@ export const GameScreen: React.FC<ChildProps> = ({
 }) => {
   const initialGuess = generateRandomBetween(1, 100, userNumber);
   const [currentGuess, setCurrentGuess] = useState<number>(initialGuess);
+  const [guessRounds, setGuessRounds] = useState<number[]>([]);
 
   // using useeffect to set minBoundary & maxBoundary to original value
   // when new game will run in case there was previous game run
@@ -67,6 +68,10 @@ export const GameScreen: React.FC<ChildProps> = ({
       currentGuess
     );
     setCurrentGuess(newRndNumber);
+    setGuessRounds((previousGuessRounds) => [
+      newRndNumber,
+      ...previousGuessRounds,
+    ]);
   };
 
   useEffect(() => {
@@ -74,6 +79,10 @@ export const GameScreen: React.FC<ChildProps> = ({
       onGameOver(true);
     }
   }, [currentGuess, userNumber, onGameOver]);
+
+  const renderItem = (item) => {
+    <Text>{item}</Text>;
+  };
 
   return (
     <View style={styles.screen}>
@@ -104,7 +113,10 @@ export const GameScreen: React.FC<ChildProps> = ({
       </Card>
 
       <View>
-        <Text>Log Rounds</Text>
+        {guessRounds.map((guessRound) => (
+          <Text key={guessRound}>{guessRound}</Text>
+        ))}
+        {/* <FlatList data={guessRounds} renderItem={renderItem} /> */}
       </View>
     </View>
   );
