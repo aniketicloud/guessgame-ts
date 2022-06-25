@@ -9,10 +9,10 @@ import { PrimaryButton } from "../components/ui/PrimaryButton";
 import { Title } from "../components/ui/Title";
 import { GuessLogItem } from "../components/game/GuessLogItem";
 
-interface ChildProps {
+interface childProps {
   children?: React.ReactNode;
   userNumber: number;
-  onGameOver: any;
+  onGameOver: (numberOfRounds: number) => void;
 }
 
 function generateRandomBetween(
@@ -28,7 +28,7 @@ function generateRandomBetween(
 let minBoundary: number = 1;
 let maxBoundary: number = 100;
 
-export const GameScreen: React.FC<ChildProps> = ({
+export const GameScreen: React.FC<childProps> = ({
   userNumber,
   onGameOver,
 }) => {
@@ -77,7 +77,7 @@ export const GameScreen: React.FC<ChildProps> = ({
 
   useEffect(() => {
     if (currentGuess === userNumber) {
-      onGameOver(true);
+      onGameOver(guessRounds.length);
     }
   }, [currentGuess, userNumber, onGameOver]);
 
@@ -111,7 +111,7 @@ export const GameScreen: React.FC<ChildProps> = ({
         </View>
       </Card>
 
-      <View>
+      <View style={styles.logListContainer}>
         <FlatList
           data={guessRounds}
           renderItem={(itemData) => (
@@ -142,5 +142,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+  },
+  logListContainer: {
+    flex: 1,
+    padding: 16,
   },
 });
