@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Text, FlatList, View, StyleSheet, Alert } from "react-native";
+import { FlatList, View, StyleSheet, Alert, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
 import { NumberContainer } from "../components/game/NumberContainer";
@@ -90,8 +90,12 @@ export const GameScreen: React.FC<childProps> = ({
 
       <Card>
         <InstructionText
-          text="Higher or lower"
-          style={styles.instructionText}
+          text="Is your number"
+          style={styles.instructionTextFirst}
+        />
+        <InstructionText
+          text="Lower    or    Higher"
+          style={styles.instructionTextSecond}
         />
         <View style={styles.buttonsContainer}>
           <View style={styles.buttonContainer}>
@@ -132,9 +136,13 @@ const styles = StyleSheet.create({
     flex: 1,
     // TODO: adjust/remove padding
     // !!!!!!!
-    padding: 32,
+    paddingTop: 40,
+    paddingHorizontal: 16,
   },
-  instructionText: {
+  instructionTextFirst: {
+    fontSize: 20,
+  },
+  instructionTextSecond: {
     marginBottom: 12,
   },
   buttonsContainer: {

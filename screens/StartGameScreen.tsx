@@ -45,7 +45,7 @@ export const StartGameScreen: React.FC<childProps> = ({ onPickNumber }) => {
     <View style={styles.rootContainer}>
       <Title title="Guess My Number" />
       <Card>
-        <InstructionText text="Enter 2 digit Number" />
+        <InstructionText text="Enter a 2 digit Number" />
         <TextInput
           style={styles.numberInput}
           maxLength={2}
