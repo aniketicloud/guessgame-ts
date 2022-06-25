@@ -7,6 +7,7 @@ import { Card } from "../components/ui/Card";
 import { InstructionText } from "../components/ui/InstructionText";
 import { PrimaryButton } from "../components/ui/PrimaryButton";
 import { Title } from "../components/ui/Title";
+import { GuessLogItem } from "../components/game/GuessLogItem";
 
 interface ChildProps {
   children?: React.ReactNode;
@@ -80,6 +81,8 @@ export const GameScreen: React.FC<ChildProps> = ({
     }
   }, [currentGuess, userNumber, onGameOver]);
 
+  const guessRoundsListLength = guessRounds.length;
+
   return (
     <View style={styles.screen}>
       <Title title="Opponent's Guess" />
@@ -109,12 +112,14 @@ export const GameScreen: React.FC<ChildProps> = ({
       </Card>
 
       <View>
-        {/* {guessRounds.map((guessRound) => (
-          <Text key={guessRound}>{guessRound}</Text>
-        ))} */}
         <FlatList
           data={guessRounds}
-          renderItem={(itemData) => <Text>{itemData.item}</Text>}
+          renderItem={(itemData) => (
+            <GuessLogItem
+              roundNumber={guessRoundsListLength - itemData.index}
+              guess={itemData.item}
+            />
+          )}
           keyExtractor={(item) => item.toString()}
         />
       </View>
