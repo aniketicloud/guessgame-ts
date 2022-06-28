@@ -134,10 +134,9 @@ export const GameScreen: React.FC<childProps> = ({
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    // TODO: adjust/remove padding
-    // !!!!!!!
-    paddingTop: 40,
+    paddingTop: 24,
     paddingHorizontal: 16,
+    alignItems: "center",
   },
   instructionTextFirst: {
     fontSize: 20,
