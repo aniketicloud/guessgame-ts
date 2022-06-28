@@ -78,12 +78,10 @@ export const StartGameScreen: React.FC<childProps> = ({ onPickNumber }) => {
   );
 };
 
-// const deviceHeight = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   rootContainer: {
     flex: 1,
-    // marginTop: deviceHeight < 380 ? 30 : 100,
     alignItems: "center",
   },
   numberInput: {
