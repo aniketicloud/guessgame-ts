@@ -186,7 +186,7 @@ export const GameScreen: React.FC<childProps> = ({
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    paddingTop: 24,
+    paddingTop: 42,
     paddingHorizontal: 16,
     alignItems: "center",
   },
